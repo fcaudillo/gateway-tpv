@@ -1,0 +1,48 @@
+
+puntoventa:
+  url-upload: http://localhost:9091
+  url_graph: http://localhost:9090 
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: id_upload
+        uri: ${puntoventa.url-upload}
+        predicates:
+        - Path=/upload/**
+        filters:
+        - RewritePath=/upload/, /
+      - id: id_graph
+        uri: ${puntoventa.url_graph}
+        predicates:
+        - Path=/graph/**
+        filters:
+        - RewritePath=/graph/, /
+            
+    
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+        
+  application:
+    name: mx_gateway
+  config:
+    name: ${spring.application.name}
+    
+server:
+  port: 8080  
+  
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG    
+    
+    
+    
+     
+        
+
+  
+       
