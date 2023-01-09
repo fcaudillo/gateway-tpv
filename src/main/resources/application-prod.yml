@@ -1,7 +1,7 @@
 
 puntoventa:
-  url-upload: http://localhost:9091
-  url_graph: http://localhost:9090 
+  url-upload: http://upload:8181
+  url_graph: http://graph:9090 
 spring:
   cloud:
     gateway:
@@ -44,7 +44,7 @@ spring:
     name: ${spring.application.name}
     
 server:
-  port: 8080  
+  port: 9050  
   
 logging:
   level:
